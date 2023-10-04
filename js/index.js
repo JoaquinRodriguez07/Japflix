@@ -1,35 +1,59 @@
-const url = `https://japceibal.github.io/japflix_api/movies-data.json`
+const url = `https://japceibal.github.io/japflix_api/movies-data.json`;
 const btn = document.getElementById('inputBuscar')
 const contenedor = document.getElementById('catalogo')
 
 
-document.addEventListener('DOMContentLoaded',() => {
-  fetch(url)
-  .then(response =>response.json())
-  .then(data => {
-    
+document.addEventListener('DOMContentLoaded',()=> {
+  
+  try{
+    fetch(url)
+    .then(response =>response.json())
+    .then(data => {
+
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        li.className = "list-group-item";
+        itemList.appendChild(li);
+      });
+
+    })
+  }
+  catch(error){
+    console.log(error)
+  }
   })
 
-})
+  
 
-function lista(elementos) {
-  elementos.innerHTML = "";
 
-  elementos.forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    li.className = "list-group-item";
-    li.innerHTML = `
-      <div class="top">
-        <h4>${elementos.title}</h4>
-        <p class="fa fa-star">${elementos.vote_average}</p>
-      </div>
-      <p>${elementos.tagline}</p>
-    `
-  })
-}
 
-function buscar(e) {
+
+
+
+
+
+  
+ /*  function crearLista(registro){
+
+    for (const i of registro){
+      contenedor.innerHTML +=
+       
+      `
+          <ul>
+            <li class="titulo buscador"> ${i.title} </li>
+            <li class ="descripcion buscador"> ${i.tagline} </li>
+            <li class ="sold"> Unidades vendidas: ${i.vote_average}</li>
+          </ul>
+        
+      `
+    }
+  };
+ */
+
+
+
+/* function buscar(e) {
   if (e.target.matches('inputBuscar')) {
       
     let searchText = e.target.value.toLowerCase();
@@ -50,4 +74,4 @@ function buscar(e) {
       }
     })
   }
-}
+} */
